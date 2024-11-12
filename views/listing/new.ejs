@@ -1,0 +1,48 @@
+<% layout("/layouts/boilarplate") -%>
+<body>
+    <div class="newForm">
+        <h3 style="margin-bottom: 20px;">Enter Details : </h3>
+        <form action="/listings" method="POST" novalidate class="needs-validation">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title : </label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter catchy title" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description : </label>
+                <textarea class="form-control" id="description" name="description" rows="3" placeholder="Give details of the place" required></textarea>
+                <div class="invalid-feedback">
+                    Please enter description
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image Url : </label>
+                <input type="text" class="form-control" id="image" name="image" placeholder="Eg : https://images.unsplash.com/.....">
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    Price : <input type="number" class="form-control" name="price" placeholder="Eg : &#x20B9;1,200" required>
+                    <div class="invalid-feedback">
+                        Please enter price
+                    </div>
+                </div>
+                <div class="col">
+                    Country : <input type="text" class="form-control" name="country" placeholder="Eg : India" required>
+                    <div class="invalid-feedback">
+                        Please enter country
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location : </label>
+                <input type="text" class="form-control" id="location" name="location" placeholder="Eg : Jaipur" required>
+                <div class="invalid-feedback">
+                    Please enter location
+                </div>
+            </div>
+            <button class="btn btn-success">Add</button>
+        </form>
+    </div>
+</body>

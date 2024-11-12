@@ -1,0 +1,29 @@
+<% layout("/layouts/boilarplate") -%>
+<body>
+    <div class="newForm">
+        <h3 style="margin-bottom: 20px;">Login on BookMyStay : </h3>
+        <form action="/login" method="POST" novalidate class="needs-validation">
+            <div class="mb-3">
+                <label for="username" class = "form-label">UserName : </label>
+                <input
+                    name="username"
+                    id = "username"
+                    type="text"
+                    class="form-control"
+                    required
+                />
+            </div>
+            <div class="mb-3">
+                <label for="password" class = "form-label">Password : </label>
+                <input
+                    name="password"
+                    id = "password"
+                    type="password"
+                    class="form-control"
+                    required
+                />
+            </div>
+            <button class="btn btn-success">Login</button>
+        </form>
+    </div>
+</body>

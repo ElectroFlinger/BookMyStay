@@ -1,0 +1,75 @@
+<% layout("/layouts/boilarplate") -%>
+
+    <body>
+        <div class="card show-card">
+            <div class="card-image show-image">
+                <img src="<%= listing.image %>" alt="listing_image">
+            </div>
+            <div class="card-body">
+                <h3 style="margin-bottom: 15px;">
+                    <%= listing.title %>
+                </h3>
+                <p style="font-weight: 500;">
+                    <%=listing.description%>
+                </p>
+                <p style="font-weight: 500;">
+                    &#x20B9;<%= (typeof listing.price==='number' ? listing.price.toLocaleString("en-IN")
+                        : 'Invalid Price' ) %>
+                </p>
+                <p class="card-price">
+                    <%=listing.location%>
+                </p>
+                <p class="card-price">
+                    <%=listing.country%>
+                </p>
+            </div>
+        </div>
+        <div class="button-group">
+            <a class="btn btn-primary" href="/listings/<%= listing._id %>/edit" role="button">Edit</a>
+            <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+        <br><br>
+        <hr>
+        <div class="review-form" style="width: 60%; margin: auto;">
+            <h4>Give a Review : </h4>
+            <form action="/listings/<%=listing._id%>/reviews" method="POST" novalidate class="needs-validation">
+                <div class="mb-3">
+                    <label for="customRange1" class="form-label">Rating : </label>
+                    <input type="range" min="1" max="5" name="rating" class="form-range" id="customRange1">
+                </div>
+                <div class="mb-3">
+                    <label for="comment" class="form-label">Comment : </label>
+                    <textarea class="form-control" id="comment" rows="3" name="comment" placeholder="Write A Review"
+                        required></textarea>
+                    <div class="invalid-feedback">
+                        Write a Review Before Submitting
+                    </div>
+                </div>
+                <button class="btn btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <br><br>
+        <hr>
+        <div class="reviews" style="width: 60%; margin: auto;">
+            <h4>All Reviews :</h4>
+            <div class="review-container">
+                <% for(let review of listing.reviews) { %>
+                    <div class="review-card">
+                        <h5 class="card-title">Mr. Nobody</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-bottom: 15px !important;">
+                            Rating: <%= review.rating %>*
+                        </h6>
+                        <div>
+                            <p><%= review.comment %></p>
+                        </div>
+                        <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        
+    </body>

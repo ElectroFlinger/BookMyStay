@@ -1,0 +1,27 @@
+<% layout("/layouts/boilarplate") -%>
+<body>
+    <h2>BookMyStay</h2>
+    <div class="card-container">
+        <% for (let listing of allListings) { %>
+            <a href="/listings/<%=listing._id%>" style="text-decoration: none;">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="<%= listing.image%>" alt="listing_image">
+                        <div class="card-img-overlay">
+                            <p class="card-text"><%=listing.description%></p>
+                          </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= listing.title %></h5>
+                        <p class="card-price">
+                            &#x20B9;<%= (typeof listing.price === 'number' ? listing.price.toLocaleString("en-IN") : 'Invalid Price') %>
+                        </p>
+                        
+                    </div>
+                </div>
+            </a>
+        <% } %>
+    </div>
+</body>
+
+
