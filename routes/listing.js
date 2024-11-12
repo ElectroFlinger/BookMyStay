@@ -25,12 +25,12 @@ router.get("/", wrapAsync(async (req, res) => {
 }));
 
 // Route to display form for creating a new listing
-router.get("/new",isLoggedIn,(req, res) => {
+router.get("/new",(req, res) => {
     res.render("listing/new.ejs");
 });
 
 // Route to save a new listing
-router.post("/", isLoggedIn,validateListing, wrapAsync(async (req, res) => {
+router.post("/",validateListing, wrapAsync(async (req, res) => {
     const { image, ...listingData } = req.body;
     const newListing = new Listing({
         ...listingData,
@@ -53,7 +53,7 @@ router.get("/:id", wrapAsync(async (req, res) => {
 }));
 
 // Route to display edit form for a specific listing
-router.get("/:id/edit",isLoggedIn, wrapAsync(async (req, res) => {
+router.get("/:id/edit", wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
     if (!listing) {
@@ -64,7 +64,7 @@ router.get("/:id/edit",isLoggedIn, wrapAsync(async (req, res) => {
 }));
 
 // Route to update a specific listing
-router.put("/:id", isLoggedIn,validateListing, wrapAsync(async (req, res) => {
+router.put("/:id",validateListing, wrapAsync(async (req, res) => {
     const { id } = req.params;
     const { image, ...listingData } = req.body;
 
@@ -79,7 +79,7 @@ router.put("/:id", isLoggedIn,validateListing, wrapAsync(async (req, res) => {
 }));
 
 // Route to delete a specific listing
-router.delete("/:id",isLoggedIn, wrapAsync(async (req, res) => {
+router.delete("/:id", wrapAsync(async (req, res) => {
     let { id } = req.params;
     await Listing.findByIdAndDelete(id);
     req.flash("success", "Listing deleted successfully!");

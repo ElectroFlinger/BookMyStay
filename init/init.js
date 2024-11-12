@@ -20,4 +20,4 @@ async function initDB(){
     console.log("data saved");
 };
 
-initDB();
+// initDB();
