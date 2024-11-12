@@ -17,9 +17,9 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
 // Database connection
-const MONGO_URL = "mongodb://127.0.0.1:27017/hotels";
+// const MONGO_URL = "mongodb://127.0.0.1:27017/hotels";
 const dbUrl = process.env.ATLASDB_URL;
-mongoose.connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("Connection to DB successful");
     })
@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Session and Flash setup (moved up to ensure they work across all routes)
 const store = MongoStore.create({
-    mongoUrl:MONGO_URL,
+    mongoUrl:dbUrl,
     crypto:{
         secret: process.env.SECRET,
     },
